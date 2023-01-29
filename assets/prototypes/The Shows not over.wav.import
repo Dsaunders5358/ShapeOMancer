@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/The Shows not over.wav-dfe00dda332122154e2759028b6bb95b.sample"
+
+[deps]
+
+source_file="res://assets/prototypes/The Shows not over.wav"
+dest_files=[ "res://.import/The Shows not over.wav-dfe00dda332122154e2759028b6bb95b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

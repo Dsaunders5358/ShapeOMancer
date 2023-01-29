@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/prototypes/damage.wav" type="AudioStream" id=1]
+[ext_resource path="res://assets/prototypes/destroyed.wav" type="AudioStream" id=2]
+[ext_resource path="res://Globals/PlayerSounds.gd" type="Script" id=3]
+
+[node name="PlayerSounds" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+bus = "Sound Effects"
+
+[node name="DamageSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = -13.11
+bus = "Sound Effects"

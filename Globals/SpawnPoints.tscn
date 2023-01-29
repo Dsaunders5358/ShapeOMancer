@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://actors/Spawn.gd" type="Script" id=1]
+[ext_resource path="res://actors/Enemy.tscn" type="PackedScene" id=2]
+
+[node name="SpawnPoints" type="Node2D"]
+script = ExtResource( 1 )
+Enemy = ExtResource( 2 )
+
+[node name="Spawn1" type="Position2D" parent="."]
+position = Vector2( 79, 77 )
+
+[node name="Spawn2" type="Position2D" parent="."]
+position = Vector2( 445, 52 )
+
+[node name="Spawn3" type="Position2D" parent="."]
+position = Vector2( 852, 54 )
+
+[node name="Spawn4" type="Position2D" parent="."]
+position = Vector2( 1262, 75 )
+
+[node name="Spawn5" type="Position2D" parent="."]
+position = Vector2( 94, 693 )
+
+[node name="Spawn6" type="Position2D" parent="."]
+position = Vector2( 424, 696 )
+
+[node name="Spawn7" type="Position2D" parent="."]
+position = Vector2( 856, 691 )
+
+[node name="Spawn8" type="Position2D" parent="."]
+position = Vector2( 1267, 665 )
+
+[node name="Spawn9" type="Position2D" parent="."]
+position = Vector2( 89, 394 )
+
+[node name="Spawn10" type="Position2D" parent="."]
+position = Vector2( 1268, 391 )
+
+[node name="Spawn11" type="Position2D" parent="."]
+position = Vector2( 663, 392 )
+
+[node name="WaveSpawner" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="EnemySpawn" type="Timer" parent="."]
+
+[connection signal="timeout" from="WaveSpawner" to="." method="_on_WaveSpawner_timeout"]
+[connection signal="timeout" from="EnemySpawn" to="." method="_on_EnemySpawn_timeout"]

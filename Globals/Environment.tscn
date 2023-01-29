@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/prototypes/proto-stage.png" type="Texture" id=1]
+[ext_resource path="res://Globals/boundary.gd" type="Script" id=2]
+
+[node name="Environment" type="StaticBody2D"]
+pause_mode = 2
+collision_mask = 7
+script = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 12, 20, 12, 746, 1355, 746, 1355, 767, 0, 766, 1, 0, 14, 0 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 0, 20, 1353, 21, 1354, 768, 1366, 768, 1366, 0, 0, 0 )
+
+[node name="ProtoStage" type="Sprite" parent="."]
+pause_mode = 2
+self_modulate = Color( 0, 79.07, 0, 1 )
+show_behind_parent = true
+position = Vector2( 684.5, 383 )
+scale = Vector2( 0.05, 0.05 )
+texture = ExtResource( 1 )

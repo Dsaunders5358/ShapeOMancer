@@ -1,0 +1,172 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://weapons/Weapon.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/prototypes/proto-tri-3.png" type="Texture" id=2]
+[ext_resource path="res://actors/Player.gd" type="Script" id=3]
+[ext_resource path="res://assets/prototypes/proto-square.png" type="Texture" id=4]
+[ext_resource path="res://actors/Health.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/prototypes/proto-square-crackv.png" type="Texture" id=6]
+[ext_resource path="res://assets/prototypes/proto-square-cracka.png" type="Texture" id=7]
+[ext_resource path="res://assets/prototypes/proto-tri-3-crackedv.png" type="Texture" id=8]
+[ext_resource path="res://assets/prototypes/proto-square-crack.png" type="Texture" id=9]
+[ext_resource path="res://assets/prototypes/proto-tri-3-cracked.png" type="Texture" id=10]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 9 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "square",
+"speed": 0.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 10 ), ExtResource( 10 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "triangle",
+"speed": 0.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 23.5, 14.5 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "switch_shape"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.1, 0.1 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ "triangle", false ],
+"method": "play"
+}, {
+"args": [ "square", false ],
+"method": "play"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 225.0, 90.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "switch_shape_2"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.1, 0.1 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ "square", false ],
+"method": "play"
+}, {
+"args": [ "triangle", false ],
+"method": "play"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 90.0, 225.0 ]
+}
+
+[node name="Player" type="KinematicBody2D" groups=["player"]]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource( 3 )
+
+[node name="ShapeSelector" type="AnimatedSprite" parent="."]
+self_modulate = Color( 0, 22.67, 21.97, 1 )
+rotation = 3.92699
+frames = SubResource( 1 )
+animation = "triangle"
+
+[node name="TriangleCollision" type="CollisionPolygon2D" parent="."]
+rotation = 3.92699
+polygon = PoolVector2Array( -22.6274, -22.6274, -24.7488, 24.7487, 21.9203, 21.9203 )
+
+[node name="Health" parent="." instance=ExtResource( 5 )]
+
+[node name="Weapon" parent="." instance=ExtResource( 1 )]
+
+[node name="PlayerCooldown" type="Timer" parent="."]
+
+[node name="SquareCollision" type="CollisionShape2D" parent="."]
+position = Vector2( 0.5, 0.5 )
+shape = SubResource( 2 )
+disabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../ShapeSelector")
+anims/switch_shape = SubResource( 3 )
+anims/switch_shape_2 = SubResource( 4 )
+
+[node name="InvulnTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="ChargeTime" type="Timer" parent="."]
+one_shot = true
+
+[node name="ChargeDuration" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="ShieldTimer" type="Timer" parent="."]
+
+[node name="ShieldCooldown" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="InvulnTimer" to="." method="_on_InvulnTimer_timeout"]
+[connection signal="timeout" from="ChargeTime" to="." method="_on_ChargeTime_timeout"]
+[connection signal="timeout" from="ChargeDuration" to="." method="_on_ChargeDuration_timeout"]

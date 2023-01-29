@@ -1,0 +1,199 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://assets/prototypes/DubsteptrixRegular-OK74.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/prototypes/The Shows not over.wav" type="AudioStream" id=2]
+[ext_resource path="res://Screens/TitleScreen.gd" type="Script" id=3]
+[ext_resource path="res://assets/prototypes/proto-stage.png" type="Texture" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 144
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 200
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 46
+font_data = ExtResource( 1 )
+
+[sub_resource type="Environment" id=3]
+background_mode = 4
+glow_enabled = true
+glow_strength = 1.16
+glow_blend_mode = 1
+glow_hdr_threshold = 1.35
+glow_hdr_luminance_cap = 0.21
+glow_hdr_scale = 0.75
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/Key:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 14, 14, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "any_key"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/Key:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ), Color( 14, 14, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "audio_fade"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -80.0 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "float_anim"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/Shape:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 390.5, 0 ), Vector2( 380.5, 10 ), Vector2( 390.5, 5 ), Vector2( 395, -10 ), Vector2( 390.5, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/O:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 563.5, 100 ), Vector2( 553.5, 90 ), Vector2( 563.5, 105 ), Vector2( 573.5, 110 ), Vector2( 563.5, 100 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CanvasLayer/Mancer:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 332, 212 ), Vector2( 332, 222 ), Vector2( 337, 212 ), Vector2( 327, 207 ), Vector2( 332, 212 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CanvasLayer/Key:rect_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 220.5, 528 ), Vector2( 215.5, 533 ), Vector2( 220.5, 537 ), Vector2( 230.5, 528 ), Vector2( 220.5, 528 ) ]
+}
+
+[node name="TitleScreen" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Shape" type="Label" parent="CanvasLayer"]
+self_modulate = Color( 0, 14, 0, 1 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -290.266
+margin_top = -2.44793
+margin_right = 294.734
+margin_bottom = 123.564
+custom_fonts/font = SubResource( 1 )
+text = "Shape"
+
+[node name="Mancer" type="Label" parent="CanvasLayer"]
+self_modulate = Color( 0, 14, 14, 1 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -350.965
+margin_top = 209.517
+margin_right = 351.036
+margin_bottom = 335.517
+custom_fonts/font = SubResource( 1 )
+text = "Mancer"
+
+[node name="O" type="Label" parent="CanvasLayer"]
+self_modulate = Color( 14, 0, 14, 1 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -114.535
+margin_top = 107.483
+margin_right = 124.465
+margin_bottom = 283.485
+custom_fonts/font = SubResource( 2 )
+text = "'O'"
+
+[node name="Key" type="Label" parent="CanvasLayer"]
+self_modulate = Color( 14, 14, 0, 1 )
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -457.535
+margin_top = -235.469
+margin_right = 467.469
+margin_bottom = -194.469
+custom_fonts/font = SubResource( 4 )
+text = "Press Any to Key to Continue"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+method_call_mode = 1
+anims/RESET = SubResource( 5 )
+anims/any_key = SubResource( 6 )
+anims/audio_fade = SubResource( 7 )
+anims/float_anim = SubResource( 8 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+autoplay = true
+
+[node name="Sprite" type="Sprite" parent="."]
+self_modulate = Color( 0, 11.05, 0, 1 )
+position = Vector2( 678.5, 169 )
+scale = Vector2( 0.526354, 0.434896 )
+texture = ExtResource( 4 )
